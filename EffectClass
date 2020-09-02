@@ -1,0 +1,24 @@
+import numpy as np
+
+
+class Effect:
+
+    def __init__(self):
+        self._on = False
+
+    @staticmethod
+    def process(frame: list, tick: int, fps: int) -> list:
+        return frame
+
+    def toggle(self):
+        self._on = not self._on
+
+
+class PitchEffect(Effect):
+
+    @staticmethod
+    def getFourier(frame: list):
+        fourier = np.fft.fft(frame)
+        # fourier_frequencies = np.fft.fftfreq(n=len(frame), d=1/44100)
+
+        return fourier
