@@ -1,0 +1,18 @@
+from EffectClass import Effect
+
+
+class Amplify(Effect):
+
+    def __init__(self, amp=1):
+        super().__init__()
+        self.__amp = amp
+
+    def process(self, frame: list, tick: int, fps: int) -> list:
+        if self._on:
+            for i in range(len(frame)):
+                frame[i] *= self.__amp
+
+        return frame
+
+    def setAmp(self, amp):
+        self.__amp = amp
