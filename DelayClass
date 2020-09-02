@@ -1,0 +1,28 @@
+from EffectClass import Effect
+import copy
+
+
+class Delay(Effect):
+
+    def __init__(self, delay=0.5):
+        super().__init__()
+        self.__delay = delay
+        self.__delayFrames = []
+
+    def process(self, frame: list, tick: int, fps: int) -> list:
+        if self._on:
+            self.__delayFrames = frame[::-1] + self.__delayFrames
+
+            if len(self.__delayFrames) > self.__delay*44100:
+                for i in range(len(frame)):
+                    frame[i] += self.__delayFrames.pop()
+        else:
+            self.__delayFrames = []
+
+        return frame
+
+    def setDelay(self, delay: float):
+        if delay != self.__delay:
+            self.__delayFrames = []
+
+        self.__delay = delay
