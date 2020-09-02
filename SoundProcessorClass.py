@@ -5,7 +5,6 @@ import time as t
 from AmplifyClass import Amplify
 from VibratoClass import Vibrato
 from DelayClass import Delay
-from PitchShiftClass import PitchShift
 
 
 class SoundProcessor:
@@ -35,7 +34,6 @@ class SoundProcessor:
             "amp": Amplify(),
             "vibrato": Vibrato(),
             "delay": Delay(),
-            "pitchShift": PitchShift(),
         }
 
         self.inputFrame = []
