@@ -1,0 +1,24 @@
+from EffectClass import Effect
+import math
+
+
+class Vibrato(Effect):
+
+    def __init__(self, speed=0.5, intensity=1):
+        super().__init__()
+        self.__speed = speed
+        self.__intensity = intensity
+
+    def process(self, frame: list, tick: int, fps: int) -> list:
+        if self._on:
+            for i in range(len(frame)):
+                frame[i] *= ((((math.sin(2 * math.pi * (tick / (fps * self.__speed)))) + 1) / 2) * self.__intensity)\
+                    + (1 - self.__intensity)
+
+        return frame
+
+    def setSpeed(self, speed: float):
+        self.__speed = speed
+
+    def setIntensity(self, intensity: float):
+        self.__intensity = intensity
